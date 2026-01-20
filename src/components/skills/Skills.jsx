@@ -1,138 +1,29 @@
 import React from 'react';
 import './skills.css';
 
+const skillsData = {
+  'Cyber Security': ['Risk Managment', 'Cyber Security Audit', 'Incident Responce', 'Data Loss Protection(DLP)', 'Third Party Risk Managment'],
+  'Networking & Infrastructure': ['Network Engineering', 'Asset Management', 'Infrastructure Management', 'Security Education and Awareness'],
+  'Identity & Access Management (IAM)': ['Access Control', 'Security Protocols'],
+  'Web Technologies': ['Java', 'Python', 'HTML', 'CSS']
+};
 
 const Skills = () => {
   return (
     <section id="skills">
       <h2>My Technical Skills</h2>
-
-      <div className="container skills__container">
-
-      <div className="skills__frontend skills__section">
-          <h4>Cyber Security</h4>
-          <div className="skills__contents">
-            <article className="skills__details">
-              
-              <div>
-                <h5>Risk Managment</h5>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <div>
-                <h5>Cyber Security Audit</h5>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <div>
-                <h5>Incident Responce</h5>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <div>
-                <h5>Data Loss Protection(DLP)</h5>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <div>
-                <h5>Third Party Risk Managment</h5>
-              </div>
-            </article>
-
-            
+      
+      <div className="skills-tags-container">
+        {Object.entries(skillsData).map((category, index) => (
+          <div key={index} className="tags-category">
+            <h4 className="tags-category-title">{category[0]}</h4>
+            <div className="tags-cloud">
+              {category[1].map((skill, idx) => (
+                <span key={idx} className="skill-tag">{skill}</span>
+              ))}
+            </div>
           </div>
-        </div>
-
-
-
-
-        <div className="skills__frontend skills__section">
-          <h4>Networking & Infrastructure</h4>
-          <div className="skills__contents">
-            <article className="skills__details">
-              
-              <div>
-                <h5>Network Engineering</h5>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <div>
-                <h5> Asset Management</h5>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <div>
-                <h5> Infrastructure Management</h5>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <div>
-                <h5>Security Education and Awareness</h5>
-              </div>
-            </article>
-          </div>
-        </div>
-
-
-        <div className="skills__frontend skills__section">
-          <h4>Identity & Access Management (IAM)</h4>
-          <div className="skills__contents">
-            <article className="skills__details">
-              
-              <div>
-                <h5>Access Control</h5>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <div>
-                <h5> Security Protocols</h5>
-              </div>
-            </article>
-
-          </div>
-        </div>
-
-
-        <div className="skills__frontend skills__section">
-          <h4>Web Technologies</h4>
-          <div className="skills__contents">
-            <article className="skills__details">
-              
-              <div>
-                <h5>Java</h5>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <div>
-                <h5>Python</h5>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <div>
-                <h5>HTML</h5>
-              </div>
-            </article>
-
-            <article className="skills__details">
-              <div>
-                <h5>CSS</h5>
-              </div>
-            </article>
-            
-          </div>
-        </div>
-
-
+        ))}
       </div>
     </section>
   );

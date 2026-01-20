@@ -4,7 +4,9 @@ body {
   font-family: "Raleway", serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  background: linear-gradient(135deg, #1f1f38 0%, #2c2c6c 100%);
+  min-height: 100vh;
+  scroll-behavior: smooth;
 }
 
 :root {
@@ -21,5 +23,35 @@ body {
   --container-width-md: 86%;
   --container-width-ms: 90%;
   
+}
+
+/* Global animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(77, 181, 255, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(77, 181, 255, 0.8);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
 }
 

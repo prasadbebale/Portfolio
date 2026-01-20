@@ -8,7 +8,6 @@ import Education from './components/Education/Education'
 import Skills from './components/skills/Skills'
 import Contacts from "./components/Contacts/Contact";
 import Achievement from "./components/Achievements/Achievements";
-import TACComponent from './components/TAC/TAC';
 
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -23,7 +22,6 @@ const App = () => {
         <Nav />
         <Education />
         <Skills />
-        <TACComponent />
         
         <Projects />
         <Achievement />

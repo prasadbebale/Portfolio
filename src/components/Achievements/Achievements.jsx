@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './achievement.css';
 
 const achievements = [
@@ -22,6 +22,30 @@ const achievements = [
 ];
 
 const Achievement = () => {
+  const [hasBeenViewed, setHasBeenViewed] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasBeenViewed) {
+          setHasBeenViewed(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    const section = document.querySelector('#achievements');
+    if (section) {
+      observer.observe(section);
+    }
+
+    return () => {
+      if (section) {
+        observer.unobserve(section);
+      }
+    };
+  }, [hasBeenViewed]);
+
   return (
     <section id='achievements'>
       <div className="achievement-container">
@@ -29,7 +53,9 @@ const Achievement = () => {
         <div className="achievement-list">
           {achievements.map((achievement, index) => (
             <div className="achievement-item" key={index}>
-              <img className="img-responsive" src={achievement.imageUrl} alt={`Certificate for ${achievement.title}`} />
+              <div className="achievement-image-container">
+                <img className="img-responsive" src={achievement.imageUrl} alt={`Certificate for ${achievement.title}`} />
+              </div>
               <h3>{achievement.title}</h3>
               <p>{achievement.description}</p>
             </div>
