@@ -21,7 +21,7 @@ const Home = () => {
             </div>
 
             <div className='cta'>
-              <a href={CV} download className='btn btn-primary'>Download CV</a>
+              <a className='btn btn-primary'>Download CV</a>
               <a href="#skills" className='btn btn-secondary'>Let's Talk</a>
             </div>
           </div>
