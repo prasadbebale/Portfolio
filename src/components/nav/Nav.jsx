@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './nav.css';
 import { CiHome } from 'react-icons/ci';
 import { FaRegUser } from 'react-icons/fa';
@@ -12,6 +12,44 @@ const Nav = () => {
   const [activeNav, setActiveNav] = useState('#home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('section[id]');
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
+      
+      let currentSection = '';
+      let minDistance = Infinity;
+      
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const sectionTop = window.scrollY + rect.top;
+        const sectionBottom = sectionTop + rect.height;
+        const sectionCenter = sectionTop + rect.height / 2;
+        
+        const distance = Math.abs(scrollPosition - sectionCenter);
+        
+        if (distance < minDistance) {
+          minDistance = distance;
+          currentSection = '#' + section.id;
+        }
+      });
+      
+      if (currentSection && currentSection !== activeNav) {
+        setActiveNav(currentSection);
+      }
+    };
+
+    // Initial check
+    handleScroll();
+    
+    // Add scroll listener
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [activeNav]);
+
   const handleNavClick = (navId) => {
     setActiveNav(navId);
     setIsMobileMenuOpen(false);
@@ -24,16 +62,16 @@ const Nav = () => {
         <a href="#home" onClick={() => handleNavClick('#home')} className={activeNav === '#home' ? 'active' : ''}>
           <CiHome />
         </a>
-        <a href="#education" onClick={() => handleNavClick('#about')} className={activeNav === '#about' ? 'active' : ''}>
+        <a href="#education" onClick={() => handleNavClick('#education')} className={activeNav === '#education' ? 'active' : ''}>
           <IoSchoolSharp />
         </a>
-        <a href="#achievements" onClick={() => handleNavClick('#achievement')} className={activeNav === '#achievement' ? 'active' : ''}>
+        <a href="#achievements" onClick={() => handleNavClick('#achievements')} className={activeNav === '#achievements' ? 'active' : ''}>
           <GiAchievement />
         </a>
-        <a href="#title" onClick={() => handleNavClick('#project')} className={activeNav === '#project' ? 'active' : ''}>
+        <a href="#title" onClick={() => handleNavClick('#title')} className={activeNav === '#title' ? 'active' : ''}>
           <GoProject />
         </a>
-        <a href="#get-in-touch" onClick={() => handleNavClick('#contact')} className={activeNav === '#contact' ? 'active' : ''}>
+        <a href="#get-in-touch" onClick={() => handleNavClick('#get-in-touch')} className={activeNav === '#get-in-touch' ? 'active' : ''}>
           <MdOutlineMessage />
         </a>
       </nav>
@@ -50,19 +88,19 @@ const Nav = () => {
             <CiHome />
             <span>Home</span>
           </a>
-          <a href="#education" onClick={() => handleNavClick('#about')} className={activeNav === '#about' ? 'active' : ''}>
+          <a href="#education" onClick={() => handleNavClick('#education')} className={activeNav === '#education' ? 'active' : ''}>
             <IoSchoolSharp />
             <span>Education</span>
           </a>
-          <a href="#achievements" onClick={() => handleNavClick('#achievement')} className={activeNav === '#achievement' ? 'active' : ''}>
+          <a href="#achievements" onClick={() => handleNavClick('#achievements')} className={activeNav === '#achievements' ? 'active' : ''}>
             <GiAchievement />
             <span>Achievements</span>
           </a>
-          <a href="#title" onClick={() => handleNavClick('#project')} className={activeNav === '#project' ? 'active' : ''}>
+          <a href="#title" onClick={() => handleNavClick('#title')} className={activeNav === '#title' ? 'active' : ''}>
             <GoProject />
             <span>Projects</span>
           </a>
-          <a href="#get-in-touch" onClick={() => handleNavClick('#contact')} className={activeNav === '#contact' ? 'active' : ''}>
+          <a href="#get-in-touch" onClick={() => handleNavClick('#get-in-touch')} className={activeNav === '#get-in-touch' ? 'active' : ''}>
             <MdOutlineMessage />
             <span>Contact</span>
           </a>
